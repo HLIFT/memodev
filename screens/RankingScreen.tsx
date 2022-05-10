@@ -1,10 +1,10 @@
-import {View, Text, StyleSheet, TextInput} from "react-native";
+import {View, Text, StyleSheet, TextInput, TouchableOpacity} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import ScreenContainer from "../components/ScreenContainer";
 import {useEffect, useState} from "react";
 import {Record} from "../helpers/types";
-import {getRecords} from "../helpers/store";
+import {getRecords, resetRecords} from "../helpers/store";
 import RankingLine from "../components/RankingLine";
 
 const RankingScreen = ({navigation}: NativeStackScreenProps<any>) => {
@@ -37,6 +37,9 @@ const RankingScreen = ({navigation}: NativeStackScreenProps<any>) => {
                     )
                 })}
             </View>
+            {/*<TouchableOpacity onPress={() => resetRecords()}>
+                <Text>Reset</Text>
+            </TouchableOpacity>*/}
         </ScreenContainer>
     )
 }

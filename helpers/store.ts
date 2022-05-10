@@ -11,3 +11,11 @@ export const getRecords = async (): Promise<Record[]|undefined> => {
         console.error(e)
     }
 }
+
+export const resetRecords = async () : Promise<void> => {
+    try {
+        await AsyncStorage.setItem('records', JSON.stringify([]))
+    } catch (e) {
+        console.error(e)
+    }
+}

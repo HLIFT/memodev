@@ -147,7 +147,11 @@ const GameScreen = ({navigation, route}: NativeStackScreenProps<any>) => {
                 <View style={[styles.board]}>
                     {devs.map((dev, index) => {
                         return (
-                            <TouchableOpacity key={dev.id+'-'+index} onPress={clickable ? () => handleClickOnCard(dev, index) : () => {}}>
+                            <TouchableOpacity
+                                key={dev.id+'-'+index}
+                                activeOpacity={devsReturned.find(value => value.index === index) === undefined ? 0 : 1}
+                                onPress={devsReturned.find(value => value.index === index) === undefined ? () => handleClickOnCard(dev, index) : () => {}}
+                            >
                                 <Card
                                     image={dev.image}
                                     isFlip={devsReturned.find(value => value.index === index) !== undefined}
