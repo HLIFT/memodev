@@ -7,7 +7,7 @@ interface PrimaryButtonProps {
 
 const PrimaryButton = (props: PrimaryButtonProps) => {
     return (
-        <TouchableOpacity style={styles.button} onPress={() => props.onPress}>
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     )
