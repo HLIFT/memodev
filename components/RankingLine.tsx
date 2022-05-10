@@ -32,6 +32,7 @@ const RankingLine = (props: RankingLineProps) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
+        flexWrap: "wrap",
         justifyContent: "space-around",
         marginVertical: 5
     },
