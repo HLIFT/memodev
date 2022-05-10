@@ -8,8 +8,11 @@ import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import ScreenContainer from "../components/ScreenContainer";
 import PrimaryButton from "../components/PrimaryButton";
 import LottieView from 'lottie-react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Record} from "../helpers/types";
+import {getRecords} from "../helpers/store";
 
-const GameScreen = ({navigation}: NativeStackScreenProps<any>) => {
+const GameScreen = ({navigation, route}: NativeStackScreenProps<any>) => {
 
     interface DevReturned {
         dev: Dev,
@@ -25,12 +28,48 @@ const GameScreen = ({navigation}: NativeStackScreenProps<any>) => {
     const [moves, setMoves] = useState<number>(0)
     const [pairs, setPairs] = useState<number>(0)
 
+    const [pseudo, setPseudo] = useState<string>('')
+
     useEffect(() => {
+        const pseudo: string = route.params?.pseudo
+
+        setPseudo(pseudo ?? 'Anonyme')
+
         setDevs(shuffleDevs(listDevs))
     }, [])
 
     useEffect(() => {
-        if(pairs >= 10) setModalVisible(true)
+        if(pairs >= 10) {
+            setModalVisible(true)
+            const getData = async () => {
+                const records = await getRecords()
+                const newRecord: Record = {
+                    pseudo,
+                    moves,
+                    date: new Date()
+                }
+
+                if(records !== undefined) {
+                    try {
+                        records.push(newRecord)
+                        const jsonValue = JSON.stringify(records)
+                        await AsyncStorage.setItem('records', jsonValue)
+                    } catch (e) {
+                        console.error(e)
+                    }
+                } else {
+                    try {
+                        const initRecords: Record[] = []
+                        initRecords.push(newRecord)
+                        const jsonValue = JSON.stringify(initRecords)
+                        await AsyncStorage.setItem('records', jsonValue)
+                    } catch (e) {
+                        console.error(e)
+                    }
+                }
+            }
+            getData().then()
+        }
     }, [pairs])
 
     const shuffleDevs = (array: Dev[]) => {
