@@ -1,3 +1,5 @@
+import {ImageSourcePropType} from "react-native";
+
 export const listDevs: Dev[] = [
     {
         id: 1,
@@ -54,5 +56,5 @@ export const listDevs: Dev[] = [
 export type Dev = {
     id: number,
     name: string,
-    image: string
+    image: ImageSourcePropType
 }

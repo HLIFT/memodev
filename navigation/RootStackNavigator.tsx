@@ -7,8 +7,17 @@ const Stack = createNativeStackNavigator()
 const RootStackNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Landing" component={LandingScreen} />
-            <Stack.Screen name="Game" component={GameScreen} />
+            <Stack.Screen name="Landing" component={LandingScreen} options={{headerShown: false}} />
+            <Stack.Screen
+                name="Game"
+                component={GameScreen}
+                options={{
+                    headerTransparent: true,
+                    headerTitle: '',
+                    headerBackTitleVisible: false,
+                    headerTintColor: "#56CFE1"
+            }}
+            />
         </Stack.Navigator>
     )
 }

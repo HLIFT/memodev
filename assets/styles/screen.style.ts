@@ -5,6 +5,7 @@ export const screenStyles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#5E60CE"
     }
 })

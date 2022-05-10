@@ -15,12 +15,16 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 
 const styles = StyleSheet.create({
     button: {
-        padding: 10,
-        backgroundColor: '#ff33ff'
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        backgroundColor: '#56CFE1',
+        borderRadius: 10,
     },
     text: {
-        color: '#000000',
-        textAlign: 'center'
+        color: '#FFFFFF',
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 20
     }
 })
 
